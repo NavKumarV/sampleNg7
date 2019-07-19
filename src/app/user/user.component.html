@@ -1,1 +1,63 @@
-<h3>User Page</h3>
+<section>
+  <section *ngIf="showView === viewType.CONTEST_LIST">
+    <div class="m-5">
+      <table class="table table-bordered table-striped text-center">
+        <thead class="thead-dark ">
+          <tr class="border">
+            <th>Contest Id</th>
+            <th>Date</th>
+            <th>Contest Theme</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contest of contests" (click)="goToContest(contest)">
+            <td>{{contest?.contestId}}</td>
+            <td>{{contest?.date}}</td>
+            <td>{{contest?.contestTheme}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section *ngIf="showView === viewType.CONTEST">
+    <div class="m-5">
+      <button class="btn btn-secondary m-1" (click)="backToContestList()">
+          Back
+      </button>
+      <div class="row bg-secondary text-white p-2 mb-3">
+        <div class="col-4"><b>Contest Id: </b>{{selectedContest?.contestId}}</div>
+        <div class="col-4"><b>Contest Date: </b>{{selectedContest?.date}}</div>
+        <div class="col-4"><b>Contest Theme: </b>{{selectedContest?.contestTheme}}</div>
+      </div>
+
+      <div class="border border-dark rounded p-2">
+        <p>Upload an image to the contest</p>
+        <input type="file" (change)="onFileChanged($event)" #fileInput>
+        <button class="btn btn-primary" (click)="onUpload()">Upload!</button>
+      </div>
+
+      <div class="row">
+        <div class="col-3" *ngFor="let contestItem of selectedContestMock; let i = index;">
+          <div class="card m-3">
+            <img class="card-img-top" src="{{contestItem.img}}" alt="Card image" style="width:100%; height:300px;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">{{contestItem.photographer}}</div>
+                <div class="col-3">{{contestItem.numOfLikes}}</div>
+                <div class="col-3">
+                  <div (click)="likeUnlikeImage(i)">
+                    <img *ngIf="!contestItem.isliked" class="btn" height="40px" widht="40px" src="assets/img/like.svg"
+                      alt="">
+                    <img *ngIf="contestItem.isliked" class="btn" height="40px" widht="40px" src="assets/img/unlike.svg"
+                      alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

@@ -1,19 +1,26 @@
 <section class="p-5">
     <section class="m-5 p-5" *ngIf="showView === viewType.SELECT_LOGIN_TYPE">
         <div class="row text-center">
-            <a class="col-sm-6 btn" (click)="showUserLogin()">
-                <img src="assets/img/user.jpg" width="100%" height="100%" alt="user">
-                <label>USER</label>
-            </a>
+            <div class="col-6">
+                <a class="btn border border-dark rounded-circle p-5 bg-light" (click)="showUserLogin()">
+                    <img src="assets/img/user.png" class="m-4" width="300" height="200" alt="user">
+                </a>
+                <h6>USER</h6>
+            </div>
 
-            <a class="col-sm-6 btn" (click)="showAdminLogin()">
-                <img src="assets/img/admin.jpg" width="100%" height="100%" alt="admin">
-                <label>ADMIN</label>
-            </a>
+            <div class="col-6">
+                <a class="btn border border-dark rounded-circle p-5 bg-light" (click)="showAdminLogin()">
+                    <img src="assets/img/admin.png" class="m-4" width="300" height="200" alt="admin">
+                </a>
+                <h6>ADMIN</h6>
+            </div>
         </div>
     </section>
 
     <section *ngIf="showView === viewType.USER_TYPE">
+        <button class="btn btn-secondary m-1" (click)="goToLoginType()">
+            Back
+        </button>
         <section *ngIf="showAction === actionType.LOGIN">
             <form [formGroup]="userLoginForm">
                 <div class="text-center">
@@ -21,10 +28,10 @@
                 </div>
                 <div class="row">
                     <div class="offset-sm-3 col-sm-6">
-                        <input type="email" class="form-control m-1" formControlName="email" placeholder="Email">
+                        <input type="text" class="form-control m-1" formControlName="username" placeholder="Username">
                     </div>
                     <div class="offset-sm-3 col-sm-6">
-                        <input type="password" class="form-control m-1" formControlName="pwd" placeholder="Password">
+                        <input type="password" class="form-control m-1" formControlName="password" placeholder="Password">
                     </div>
                 </div>
                 <div class="text-center">
@@ -52,7 +59,7 @@
                         <input type="email" class="form-control m-1" formControlName="email" placeholder="Email">
                     </div>
                     <div class="offset-sm-3 col-sm-6">
-                        <input type="password" class="form-control m-1" formControlName="pwd" placeholder="Password">
+                        <input type="password" class="form-control m-1" formControlName="password" placeholder="Password">
                     </div>
                     <div class="offset-sm-3 col-sm-6">
                         <input type="number" class="form-control m-1" formControlName="mobile"
@@ -73,20 +80,23 @@
     </section>
 
     <section *ngIf="showView === viewType.ADMIN_TYPE">
+        <button class="btn btn-secondary m-1" (click)="goToLoginType()">
+            Back
+        </button>
         <form [formGroup]="adminLoginForm">
             <div class="text-center">
                 <h3>LOGIN</h3>
             </div>
             <div class="row">
                 <div class="offset-sm-3 col-sm-6">
-                    <input type="email" class="form-control m-1" formControlName="email" placeholder="Email">
+                    <input type="text" class="form-control m-1" formControlName="username" placeholder="Username">
                 </div>
                 <div class="offset-sm-3 col-sm-6">
-                    <input type="password" class="form-control m-1" formControlName="pwd" placeholder="Password">
+                    <input type="password" class="form-control m-1" formControlName="password" placeholder="Password">
                 </div>
             </div>
             <div class="text-center">
-                <button [disabled]="!userLoginForm.valid" class="btn btn-success m-1" (click)="loginAdmin()">
+                <button [disabled]="!adminLoginForm.valid" class="btn btn-success m-1" (click)="loginAdmin()">
                     Login
                 </button>
             </div>

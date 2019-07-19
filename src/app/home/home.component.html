@@ -1,9 +1,20 @@
 <section>
-    <div class="row">
-        <div class="col-sm-4" *ngFor="let item of list">
-            <div class="m-2 p-4 text-center">
-                Some Text
-            </div>
-        </div>
+    <div class="m-5">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark ">
+                <tr class="border">
+                    <th>Contest Id</th>
+                    <th>Date</th>
+                    <th>Contest Theme</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let contest of contests">
+                    <td>{{contest?.contestId}}</td>
+                    <td>{{contest?.date}}</td>
+                    <td>{{contest?.contestTheme}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </section>
